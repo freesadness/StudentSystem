@@ -1,0 +1,54 @@
+﻿@model IEnumerable<StudentSystem.Models.Student>
+@{
+    ViewBag.Title = "List Students";
+}
+<h1>Student List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Student#</td>
+            <td>Last Name</td>
+            <td>First Name</td>
+            <td>GPA</td>
+            <td>Course</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (StudentSystem.Models.Student s in Model)
+        {
+        <tr>
+            <td>@s.StudentId</td>
+            <td>@s.LastName</td>
+            <td>@s.FirstName</td>
+            <td>
+                @s.Gpa
+                (@s.Gpa>=2?Great GPA:Keep working on your GPA)
+                @*@if (s.Gpa >= 2) {
+            @:Great GPA
+        } else {
+            @:Keep working on your GPA
+        }*@
+            </td>
+            <td>
+                @s.CourseCode
+                @switch (s.CourseCode)
+                {
+                    case "COMP229":
+                        @:Web Application Development;
+                        break;
+                    case "COMP100":
+                        @:Programming 1;
+                        break;
+                    case "COMP123":
+                        @:Programming 2;
+                        break;
+
+                    default:
+                        @: Other Course;
+                        break;}
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
